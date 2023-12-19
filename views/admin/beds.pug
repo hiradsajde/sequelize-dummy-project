@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Add a New Room
+    body 
+        a(href=`/admin/`) Go Back
+        form(method="post" , action="/admin/add-bed" style="margin-top:20px")
+            input(type="hidden" , value=room_id , name="id")
+            input(type="text" , name="name" , placeholder="title")
+            input(type="submit" , value="add room")
+    ul(style="list-style-type:none")
+        each bed in beds 
+            li 
+                div(style="display:inline-block") #{bed.name}
+                div(style="display:inline-block")
+                    form(method="post" , action="/admin/delete-bed")
+                        input(type="hidden" , value=bed.id , name="id")
+                        input(type="hidden" , value=room_id , name="room_id")
+                        input(type="submit" , style="background-color:transparent; border:none; text-decoration:underline" , value="(Delete)")
